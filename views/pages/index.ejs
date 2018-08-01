@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><% include ../partials/head %></head>
+<body class="container">
+	<header>
+		<% include ../partials/header %>
+	</header>
+
+	<main>
+           <% for(var i=0; i<posts.length; i++) { %>
+           <% var link = "/blog/" + posts[i].id; %>
+            <div class="jumbotron">
+                <h1><a href="<%= link %>"><%= posts[i].title %></a></h1>
+                <p><%= posts[i].summary %></p>
+            </div>
+        <% } %>
+	</main>
+
+	<footer>
+		<% include ../partials/footer %>
+	</footer>
+	
+</body>
+</html>
