@@ -30,8 +30,26 @@ app.get("/", (req, res) => {
 });
 
 app.get("/pad", (req, res) => {
-    res.render('pages/  pad');
+    res.render('pages/pad');
+    
 });
+
+app.post('/pad', (req, res) => {
+    console.log("inster");
+    var postData = new Post(req.body);
+    // postData.title = res.body.title;
+    // postData.body = res.body.markdown;
+    // postData.date = res.body.date;
+    // postData.summary = res.body.summary;
+    postData.save().then( result => {
+        res.redirect(''); 
+    }).catch(err => {
+        res.status(400).send("Unable to save data");
+        console.log(err);
+    });
+});
+
+
 
 app.get("/blog/:id", (req, res) => {
     console.log("hello");

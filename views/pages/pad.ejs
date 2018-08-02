@@ -2,21 +2,43 @@
 <!-- https://scotch.io/tutorials/building-a-real-time-markdown-viewer-->
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Realtime Markdown Viewer</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
+    <link href="../style.css" rel="stylesheet">
 </head>
 
-<body class="container-fluid">
-
-    <section class="row">
-        <textarea class="col-md-6 full-height" id="pad">Write your text here..</textarea>
-        <div class="col-md-6 full-height" id="markdown"></div>
-    </section>
-
-    <script src="https://cdn.rawgit.com/showdownjs/showdown/1.0.2/dist/showdown.min.js"></script>
-    <script src="../script.js"></script>
-
+<body>
+    <form action="pad" method="POST">
+        <div class="container">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" name="title" id="title">
+            </div>
+            <div class="form-group">
+                    <label for="summary">Summary:</label>
+                    <textarea class="form-control" name="summary" rows="5" id="summary"></textarea>
+                </div>
+            <label for="pad">Content:</label>
+            <div>
+                <section class="row" style="height: 600px;">
+                    <textarea class="col-md-6 full-height" id="pad">Write your text here..</textarea>
+                    <div class="col-md-6 full-height"  name="body" id="markdown"></div>
+                </section>
+            </div>
+            <script src="https://cdn.rawgit.com/showdownjs/showdown/1.0.2/dist/showdown.min.js"></script>
+            <script src="../script.js"></script>
+            
+            <div class="form-group">  
+                    <label for="date">Title:</label>
+                    <input type="date"  name="date" id="date">
+                </div>
+            <section class="row">
+                    <input type="submit" value="Add Post" />
+            </section>
+        </div>
+    </form>
 </body>
+
 </html>
