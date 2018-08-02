@@ -12,7 +12,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true}))
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
-
+app.use(express.static(__dirname + '/public'));
 var postSchema = new mongoose.Schema({ 
     title: String,
     summary: String,
