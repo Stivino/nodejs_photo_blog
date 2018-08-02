@@ -3,7 +3,7 @@ var markdown = require('markdown').markdown;
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose')
-//var bodyParser = require('body-parser')
+var bodyParser = require('body-parser')
 //var pug = require('pug')
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
@@ -27,6 +27,10 @@ app.get("/", (req, res) => {
     Post.find({}, (err, posts) => {
       res.render('pages/index', { posts: posts})
    });
+});
+
+app.get("/pad", (req, res) => {
+    res.render('pages/pad');
 });
 
 app.get("/blog/:id", (req, res) => {
