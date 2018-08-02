@@ -3,8 +3,8 @@ var markdown = require('markdown').markdown;
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose')
-var bodyParser = require('body-parser')
-var pug = require('pug')
+//var bodyParser = require('body-parser')
+//var pug = require('pug')
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 mongoose.connect("mongodb://localhost:27017/node-blog");
