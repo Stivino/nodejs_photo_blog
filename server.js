@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/pad", (req, res) => {
-    res.render('pages/pad');
+    res.render('pages/  pad');
 });
 
 app.get("/blog/:id", (req, res) => {
