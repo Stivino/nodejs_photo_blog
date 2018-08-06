@@ -10,9 +10,20 @@
 	</header>
 
 	<main>
-        <h1><%= post.title %></h1>
-        <h2><%= post.summary %></h2>
-        <div><%= post.body %></div>
+		<div class="container">
+				<div class="row">
+						<!-- Post Content Column -->
+						<div class="col-lg-8">
+							<h1><%= post.title %></h1>
+							<hr>
+							<p><%= post.created %></p>
+							<hr>
+							<h2><%= post.summary %></h2>
+							<div><%- markdown.toHTML(post.content) %></div>
+							<!-- <div><%= post.content %></div> -->
+					</div>
+				</div>
+		</div>
 	</main>
 
 	<footer>
