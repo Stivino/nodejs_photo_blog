@@ -15,6 +15,10 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/img'));
 
+app.use(express.static(__dirname + '/vendor'));
+
+app.use(express.static(__dirname + '/css'));
+
 // Routes
 app.get("/", (req, res) => {
     Post.find({ $query: {}, $orderby: { created: 1}}, function(err, posts){

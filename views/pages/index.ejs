@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head><% include ../partials/head %></head>
-<body class="container">
-	<header>
-		<% include ../partials/header %>
-	</header>
-
-	<main>
-           <% for(var i=0; i<posts.length; i++) { %>
-           <% var link = "/blog/" + posts[i].id; %>
-           <% var img = posts[i].title_img; %>
-           <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100">
-                        <a href="<%= link %>"><%= posts[i].title %><img class="card-img-top" src="<%= img %>" sizes="(max-width: 339px) 100vw, 339px" onerror="this.src='http://placehold.it/400x300'"></a>
+<head><% include ../partials/head %></head>
+<header>
+    <% include ../partials/header %>
+</header>
+<body>
+    <div class="container">
+        <h1>Steven Weber Fotografie</h1>
+        <div class="row">
+            <% for(var i=0; i<posts.length; i++) { %>
+                <% var link = "/blog/" + posts[i].id; %>
+                <% var img = posts[i].title_img; if(img === "") { img = "http://placehold.it/700x520"} %>
+                <div class="col-lg-6 portfolio-item">
+                    <div class="card h-100">
+                        <a href="#"><img class="card-img-top" src="<%= img %>" alt=""></a>
                         <div class="card-body">
-                          <h4 class="card-title">
-                            <a href="<%= link %>"><%= posts[i].title %><%= posts[i].summary %></a>
-                          </h4>
-                          </div>
-
+                        <h4 class="card-title">
+                            <a href="<%= link %>"><%= posts[i].title %></a>
+                        </h4>
+                        <p class="card-text"><%= posts[i].summary %></p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <!-- <div class="jumbotron">
-                <h1><a href="<%= link %>"><%= posts[i].title %></a></h1>
-                <p><%= posts[i].summary %></p>
-            </div> -->
-        <% } %>
-	</main>
+            <% } %>
+        </div>
+    </div>
+        
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
 
-	<footer>
-		<% include ../partials/footer %>
-	</footer>
-	
+    <!-- Bootstrap core JavaScript -->
+    <!-- <script src="jquery/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script> -->
 </body>
 </html>
