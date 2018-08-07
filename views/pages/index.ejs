@@ -1,37 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><% include ../partials/head %></head>
-<header>
+<head>
+    <% include ../partials/head %>
+</head>
+<body role="document">
     <% include ../partials/header %>
-</header>
-<body>
+    <div></div>
     <div class="container">
-        <h1>Steven Weber Fotografie</h1>
         <div class="row">
+            <div class="container">
+                <% posts.reverse(); %>
+                <% var img = posts[0].title_img; if(img === "") { img = "http://placehold.it/700x520"} %>
+                <% var link = "/blog/" + posts[0]._id; %>
+                <img  src="<%= img %>" alt="">
+                <h1><a href"<%= link %>"><%= posts[0].title %></a></h1>
+                <p><%= posts[0].summary %></p>
+            </div>  
+            <hr>   
             <% for(var i=0; i<posts.length; i++) { %>
-                <% var link = "/blog/" + posts[i].id; %>
+                <% if(i === 0) { continue; } %>
+                <% var link = "/blog/" + posts[i]._id; %>
                 <% var img = posts[i].title_img; if(img === "") { img = "http://placehold.it/700x520"} %>
-                <div class="col-lg-6 portfolio-item">
+                <div class="col-md-4">
                     <div class="card h-100">
                         <a href="#"><img class="card-img-top" src="<%= img %>" alt=""></a>
                         <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="<%= link %>"><%= posts[i].title %></a>
-                        </h4>
-                        <p class="card-text"><%= posts[i].summary %></p>
+                            <h4 class="card-title">
+                                <a href="<%= link %>"><%= posts[i].title %></a>
+                            </h4>
+                            <p class="card-text"><%= posts[i].summary %></p>
                         </div>
                     </div>
                 </div>
-            <% } %>
+                <% } %>
+            </div>
         </div>
-    </div>
         
-    <footer>
-        <% include ../partials/footer %>
-    </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <!-- <script src="jquery/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.bundle.min.js"></script> -->
-</body>
-</html>
+        <footer>
+            <% include ../partials/footer %>
+        </footer>
+        <script src="bootstrap.min.js"></script>
+    </body>
+    </html>
