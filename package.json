@@ -12,6 +12,7 @@
   ],
   "author": "Steven Weber",
   "dependencies": {
+    "dateformat": "^3.0.3",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "markdown": "^0.5.0",
