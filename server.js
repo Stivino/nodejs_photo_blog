@@ -1,5 +1,6 @@
 // Setup
 var Post = require('./model/post');
+var dateformat = require('dateFormat');
 var markdown = require('markdown').markdown;
 var express = require('express');
 var app = express();
@@ -14,10 +15,9 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/img'));
-
-app.use(express.static(__dirname + '/vendor'));
-
 app.use(express.static(__dirname + '/css'));
+app.use(express.static(__dirname + '/js'));
+app.use(express.static(__dirname + '/posts'));
 
 // Routes
 app.get("/", (req, res) => {
@@ -49,11 +49,12 @@ app.post('/pad', (req, res) => {
 });
 
 app.get("/blog/:id", (req, res) => {
-    var id = req.params.id;
+    var id = req.params.id
+    console.log(req.params.id);
     Post.findById(id, function (err, doc) {
         if (err) throw err;
         console.log(doc);
-        res.render('pages/post', { post: doc, markdown: markdown});    
+        res.render('pages/post', { post: doc, dateformat: dateformat, markdown: markdown});    
     });
 });
 
