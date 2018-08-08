@@ -1,10 +1,9 @@
 /* post.js */
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 var postSchema = new Schema({
-    title: String,
+    title: { type: String, required: true },
     title_img: String,
     summary: String,
     created: Date,
@@ -14,5 +13,4 @@ var postSchema = new Schema({
     comments: [{ user: String, email: String, body: String, date: Date }]
 });
 
-var Post = mongoose.model('Posts', postSchema);
-module.exports = Post;
+module.exports = mongoose.model('Posts', postSchema);

@@ -46,7 +46,6 @@ app.post('/pad', (req, res) => {
 
 app.get("/blog/:id", (req, res) => {
     var id = req.params.id
-    console.log(req.params.id);
     Post.findById(id, function (err, doc) {
         if (err) throw err;
         console.log(doc);
