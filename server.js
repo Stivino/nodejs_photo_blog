@@ -1,5 +1,5 @@
 // Setup
-var Post = require('./model/post');
+var Post = require('./models/post');
 var dateformat = require('dateFormat');
 var markdown = require('markdown').markdown;
 var express = require('express');
@@ -19,12 +19,14 @@ app.use(express.static(__dirname + '/css'));
 app.use(express.static(__dirname + '/js'));
 app.use(express.static(__dirname + '/posts'));
 
+
+
 // Routes
 app.get("/", (req, res) => {
     Post.find({ $query: {}, $orderby: { created: 1}}, function(err, posts){
         if (err) throw err;
-      res.render('pages/index', { posts: posts})
-   });
+        res.render('pages/index', { posts: posts})
+    });
 });
 
 app.get("/pad", (req, res) => {
@@ -33,18 +35,12 @@ app.get("/pad", (req, res) => {
 });
 
 app.post('/pad', (req, res) => {
-    // var post = new Post({
-    //     title: res.body.title,
-    //     summary: res.body.summary,
-    //     content: res.body.markdown,
-    //     created: res.body.date});
     console.log(req.body);
     var post = new Post(req.body);
-    //console.log('Save post to db:' + post);
     post.save(function(err) {
         if (err) throw err;
         console.log('Post saved successfully!');
-      });
+    });
     res.redirect('/pad');
 });
 
@@ -54,7 +50,12 @@ app.get("/blog/:id", (req, res) => {
     Post.findById(id, function (err, doc) {
         if (err) throw err;
         console.log(doc);
-        res.render('pages/post', { post: doc, dateformat: dateformat, markdown: markdown});    
+        res.render('pages/post', 
+        {   
+            post: doc, 
+            dateformat: dateformat, 
+            markdown: markdown
+        });    
     });
 });
 
