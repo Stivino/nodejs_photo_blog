@@ -2,7 +2,7 @@
   "name": "nodejs-photo-blog",
   "description": "My personal photo blog.",
   "main": "server.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "git@github.com/Stivino/nodejs_photo_blog.git"
