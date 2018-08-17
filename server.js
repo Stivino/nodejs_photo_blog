@@ -55,11 +55,11 @@ app.get("/blog/:id", (req, res) => {
         if (err) throw err;
         console.log(doc);
         res.render('pages/post',
-            {
-                post: doc,
-                dateformat: dateformat,
-                markdown: markdown
-            });
+        {
+            post: doc,
+            dateformat: dateformat,
+            markdown: markdown
+        });
     });
 });
 
@@ -71,7 +71,7 @@ app.get('/photos/:id', (req, res) => {
             res.contentType(doc.img.contentType);
             res.send(doc.img.data);
         } else {
-            photo1.findOne({ name: 'default' }, function (err, doc) {
+            Photo.findOne({ name: 'default' }, function (err, doc) {
                 res.contentType(doc.img.contentType);
                 res.send(doc.img.data);
             });
