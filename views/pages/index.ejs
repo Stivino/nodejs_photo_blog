@@ -5,22 +5,31 @@
 </head>
 <body role="document">
     <% include ../partials/header %>
-    <div>
+    <div class="container">
+        <div class="row" style="margin-top: 1.5rem!important;">
+            <div class="col-lg-8">
+                <% posts.reverse(); %>
+                <% var img = posts[0].title_img; if(img === "") { img = "http://placehold.it/700x520"} %>
+                <% var link = "/blog/" + posts[0]._id; %>
+                <img  src="<%= img %>" alt="">
+            </div>
+            <div class="col-lg-4">
+                <h1><a href"<%= link %>"><%= posts[0].title %></a></h1>
+                <p><%= posts[0].summary %></p>
+                <a href="<%= link %>" class="btn btn-primary">Lesen</a>
+            </div>  
+        </div>
+        <hr>   
         <div class="container">
-            <% posts.reverse(); %>
-            <% var img = posts[0].title_img; if(img === "") { img = "http://placehold.it/700x520"} %>
-            <% var link = "/blog/" + posts[0]._id; %>
-            <img  src="<%= img %>" alt="">
-            <h1><a href"<%= link %>"><%= posts[0].title %></a></h1>
-            <p><%= posts[0].summary %></p>
-        </div>  
-            <hr>   
-            <div class="container" >
-            <div class="card-deck">
-            <% for(var i=0; i<posts.length; i++) { %>
-                <% if(i === 0) { continue; } %>
-                <% var link = "/blog/" + posts[i]._id; %>
-                <div class="card">
+        <div class="row" >
+        <% for(var i=1; i<posts.length; i++) { %>
+            <% var link = "/blog/" + posts[i]._id; %>
+            <!-- <% if((i % 4 === 0) || (i === 1))  { %>
+            <hr>
+            <div class="card-deck"> 
+            <% } %> -->
+            <div class="col-lg-4 col-sm-6 album-thumbnail">
+                <div class="card h-100">
                     <% var img = posts[i].title_img; if(img === "") { img = "http://placehold.it/700x520"} %>
                     <img class="card-img-top" src="<%= img %>" alt="">
                     <div class="card-body">
@@ -28,14 +37,19 @@
                             <a href="<%= link %>"><%= posts[i].title %></a>
                         </h5>
                         <p class="card-text"><small class="text-muted"><%= posts[i].summary %></small></p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>               
+                    <div class="card-footer">
+                        <a href="<%= link %>"class="btn btn-primary">Lesen</a>
                     </div>
                 </div>
-            <% } %>
-        </div>
+            </div>
+            <!-- <% if(i % 3 === 0 || i === posts.length - 1) { %>
+            </div>
+            <%    } %> -->
+        <% } %>
         </div>
     </div>
-    
+</div>
     <footer>
         <% include ../partials/footer %>
     </footer>

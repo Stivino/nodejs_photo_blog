@@ -51,7 +51,7 @@ app.post('/pad', (req, res) => {
 
 app.get("/blog/:id", (req, res) => {
     var id = req.params.id
-    Post.findById(id, function (err, doc) {
+    Post.findById({id: id}, function (err, doc) {
         if (err) throw err;
         console.log(doc);
         res.render('pages/post',
