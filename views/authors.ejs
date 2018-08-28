@@ -4,45 +4,76 @@
 <html>
 
 <head>
-    <title>Realtime Markdown Viewer</title>
-    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
-    <link href="stylesheets/style.css" rel="stylesheet">
+    <title>Neuer Artikel</title>
+    <% include ./partials/head %>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+        <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+        <link href="stylesheets/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <form action="pad" method="POST">
-        <div class="container">
+    <div class="container">
+        <form action="pad" method="POST">
             <div class="form-group">
-                <label for="title">Title:</label>
-                <textarea class="form-control" name="title" rows="1" id="title"></textarea>
-            </div>
-            <div class="form-group">
-                    <label for="title_img">Image:</label>
-                    <textarea class="form-control" name="title_img" rows="1" id="title_img"></textarea>
+                <label class="col-2" for="title">Titel</label>
+                <div class="col-12">
+                    <input type="text" class="form-control" name="title" rows="1" id="title">
                 </div>
-            <div class="form-group">
-                <label for="summary">Summary:</label>
-                <textarea class="form-control" name="summary" rows="5" id="summary"></textarea>
             </div>
-            <label for="pad">Content:</label>
-            <div>
-                <section class="row" style="height: 500px;">
+            <div class="form-group">
+                <label class="col-2 col-form-label" for="summary">Zusammenfassung</label>
+                <div class="col-12">
+                    <textarea class="form-control" name="summary" rows="5" id="summary"></textarea>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label class="col-2 col-form-label" for="example-date-input">Date</label>
+                    <div class="col-12">
+                        <input class="form-control" type="date" value="Veröffentlichung" id="example-date-input">
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="col-auto my-1">
+                        <label class="mr-sm-2" for="inlineFormCustomSelect">Autor</label>
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                            <option selected>Autor</option>
+                            <option value="1">Steven Weber</option>
+                            <option value="2">Michael Wolf</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="col-2 col-form-label" for="title_img">Titelbild</label>
+                    <!-- <input type="text" class="form-control" name="title_img" rows="1" id="title_img" /> -->
+                    <div class="col-10">
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-12">
+                    <label for="pad">Artikel</label>
+                    <!-- <section class="row" style="height: 500px;">
                     <textarea class="col-md-6 full-height" name="content" id="pad">Write your text here..</textarea>
-                    <div class="col-md-6 full-height"  name="content" id="markdown"></div>
+                    <div class="col-md-6 full-height" name="content" id="markdown"></div>
+                </section>
+                <script src="https://cdn.rawgit.com/showdownjs/showdown/1.0.2/dist/showdown.min.js"></script>
+                <script src="javascripts/script.js"></script> -->
+                    <textarea id="MyID"></textarea>
+                </div>
+                <script>var simplemde = new SimpleMDE({ element: document.getElementById("MyID") });</script>
+            </div>
+            <div class="col-12">
+                <section class="row">
+                    <input type="submit" value="Submit" />
                 </section>
             </div>
-            <script src="https://cdn.rawgit.com/showdownjs/showdown/1.0.2/dist/showdown.min.js"></script>
-            <script src="script.js"></script>
-            
-            <div class="form-group">  
-                <label for="date">Created:</label>
-                <input type="date" name="created" id="created">
-            </div>
-            <section class="row">
-                <input type="submit" value="Submit" />
-            </section>
-        </div>
-    </form>
+        </form>
+    </div>
+
 </body>
 
 </html>
