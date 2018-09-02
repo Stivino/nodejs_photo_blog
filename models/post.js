@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 var postSchema = new Schema({
-    title:     { type: String, required: true },
+    title:  { type: String, required: true },
     author: {type: Schema.Types.ObjectId, required: true},
     title_img: {type: String, required: true},
     summary: {type: String, required: true},
@@ -15,4 +15,4 @@ var postSchema = new Schema({
     hashtags: [String]
 });
 
-module.exports = mongoose.model('Posts', postSchema);
+module.exports = mongoose.model('posts', postSchema);

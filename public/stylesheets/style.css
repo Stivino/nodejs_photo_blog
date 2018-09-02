@@ -1,6 +1,10 @@
 body {
-  padding: 20px;
+  padding-bottom: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+nav {
+  margin-bottom: 20px;
 }
 
 a {
@@ -13,3 +17,5 @@ a {
 a:focus, a:hover {
   color: #0085A1;
 }
+
+.material-icons.md-18 { font-size: 18px; }
