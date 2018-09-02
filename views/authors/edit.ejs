@@ -1,0 +1,85 @@
+<!-- views/pad.ejs -->
+<!-- https://scotch.io/tutorials/building-a-real-time-markdown-viewer-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Neuer Artikel</title>
+    <% include ../partials/head %>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+        <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+        <link href="/stylesheets/style.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+</head>
+
+<body>
+    <% if(this.post) { 
+        var title = post.title;
+        var content = post.content;
+        var summary = post.summary;
+        var title_img = post.title_img;
+    }
+    %>
+    <% include ../partials/authorsHeader %>
+        <div class="container">
+            <form action="pad" method="POST">
+                <div class="form-group">
+                    <label class="col-2" for="title">Titel</label>
+                    <div class="col-12">
+                        <input type="text" class="form-control" name="title" rows="1" id="title" value="<%= title %>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-2 col-form-label" for="summary">Zusammenfassung</label>
+                    <div class="col-12">
+                        <input type="text" class="form-control" name="summary" rows="5" id="summary" value="<%= summary %>">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label class="col-4 col-form-label" for="date-input">Date</label>
+                        <div class="col-8">
+                            <input class="form-control" type="date" value="Veröffentlichung" id="date-input">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="col-4 col-form-label" for="inlineFormCustomSelect">Autor</label>
+                        <select class="custom-select col-8" id="inlineFormCustomSelect">
+                            <option value="1">Steven Weber</option>
+                            <option value="2">Michael Wolf</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="col-4 col-form-label" for="title_img">Titelbild</label>
+                        <!-- <input type="text" class="form-control" name="title_img" rows="1" id="title_img" /> -->
+                        <div class="col-4">
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1" value="<%= title_img %>">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-12">
+                        <label for="pad">Artikel</label>
+                        <!-- <section class="row" style="height: 500px;">
+                    <textarea class="col-md-6 full-height" name="content" id="pad">Write your text here..</textarea>
+                    <div class="col-md-6 full-height" name="content" id="markdown"></div>
+                </section>
+                <script src="https://cdn.rawgit.com/showdownjs/showdown/1.0.2/dist/showdown.min.js"></script>
+                <script src="javascripts/script.js"></script> -->
+                        <textarea id="MyID"></textarea>
+                    </div>
+                    <script>var simplemde = new SimpleMDE({ element: document.getElementById("MyID"), spellChecker: false });</script>
+                </div>
+                <div class="col-12">
+                    <section class="row">
+                        <input type="submit" value="Submit" />
+                    </section>
+                </div>
+            </form>
+        </div>
+
+</body>
+
+</html>

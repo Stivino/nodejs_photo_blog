@@ -1,0 +1,61 @@
+<!-- views/pad.ejs -->
+<!-- https://scotch.io/tutorials/building-a-real-time-markdown-viewer-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Neuer Artikel</title>
+    <% include ../partials/head %>
+  
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+        <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+        <link href="stylesheets/style.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+</head>
+
+<body>
+    <% include ../partials/authorsHeader %>
+        <div class="container">
+            <h1>Beiträge</h1>
+            <table class="table" id="articlesTable">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Titel</th>
+                        <th>Autor</th>
+                        <th>Datum</th>
+                        <th>Veröffentlicht</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% posts.forEach(function(post) { %>
+                        <% var link = "/authors/edit/" + post._id; %>
+                            <tr>
+                                <th><i class="material-icons md-18">delete_outline</i></th>
+                                <th>
+                                    <a href="<%= link %>">
+                                        <%= post.title %>
+                                    </a>
+                                </th>
+                                <th>
+                                    <%= post.author %>
+                                </th>
+                                <th>
+                                    <% var date = dateformat(post.created, "d. mmmm yyyy"); %>
+                                    <%= date %>
+                                </th>
+                                <th>
+                                    <%var published = post.published ? "Ja" : "Nein" %>
+                                    <%= published %>
+                                </th>
+                            </tr>
+                            <% }); %>
+                </tbody>
+            </table>
+            <p>
+                <%= posts.length %> Beiträge insgesamt. </p>
+        </div>
+      
+</body>
+
+</html>
