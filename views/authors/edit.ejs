@@ -13,72 +13,79 @@
 </head>
 
 <body>
-    <% if(this.post) { 
+    <% if(post != 'undefinied') { 
         var title = post.title;
         var content = post.content;
         var summary = post.summary;
         var title_img = post.title_img;
     }
     %>
-    <% include ../partials/authorsHeader %>
-        <div class="container">
-            <form action="pad" method="POST">
-                <div class="form-group">
-                    <label class="col-2" for="title">Titel</label>
-                    <div class="col-12">
-                        <input type="text" class="form-control" name="title" rows="1" id="title" value="<%= title %>">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-2 col-form-label" for="summary">Zusammenfassung</label>
-                    <div class="col-12">
-                        <input type="text" class="form-control" name="summary" rows="5" id="summary" value="<%= summary %>">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label class="col-4 col-form-label" for="date-input">Date</label>
-                        <div class="col-8">
-                            <input class="form-control" type="date" value="Veröffentlichung" id="date-input">
+        <% include ../partials/authorsHeader %>
+            <div class="container">
+                <form action="" method="POST">
+                    <div class="form-group">
+                        <h2 class="col-2" for="title">Titel</h2>
+                        <div class="col-12">
+                            <input type="text" class="form-control" name="title" rows="1" id="title" value="<%= title %>">
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label class="col-4 col-form-label" for="inlineFormCustomSelect">Autor</label>
-                        <select class="custom-select col-8" id="inlineFormCustomSelect">
-                            <option value="1">Steven Weber</option>
-                            <option value="2">Michael Wolf</option>
-                        </select>
+                    <div class="form-group">
+                        <h2 class="col-2" for="summary">Zusammenfassung</h2>
+                        <div class="col-12">
+                            <!-- <input type="text" class="form-control" name="summary" rows="5" id="summary" value="<%= summary %>"> -->
+                            <textarea id="summary" name="summary"></textarea>
+                        </div>
+                        <script>var simplemde = new SimpleMDE({
+                                element: document.getElementById("summary"),
+                                spellChecker: false,
+                                showIcons: ["link", "bold","italic", "preview"],
+                                hideIcons: ["strikethrough", "separator-1", "heading", "quote", "ordered-list", "unordered-list", "image", "table"]
+                            });</script>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label class="col-4 col-form-label" for="title_img">Titelbild</label>
-                        <!-- <input type="text" class="form-control" name="title_img" rows="1" id="title_img" /> -->
-                        <div class="col-4">
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1" value="<%= title_img %>">
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <h2 class="col-4" for="date-input">Datum</h2>
+                            <div class="col-8">
+                                <input class="form-control" type="date" value="Veröffentlichung" name="created" id="date-input">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <h2 class="col-4" for="inlineFormCustomSelect">Autor</h2>
+                            <select class="custom-select col-8" name="author" id="inlineFormCustomSelect">
+                                <option value="1">Steven Weber</option>
+                                <option value="2">Michael Wolf</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <h2 class="col-4" for="title_img">Titelbild</h2>
+                            <!-- <input type="text" class="form-control" name="title_img" rows="1" id="title_img" /> -->
+                            <div class="col-4">
+                                <input type="file" class="form-control-file" name="title_img" id="exampleFormControlFile1" value="<%= title_img %>">
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-12">
-                        <label for="pad">Artikel</label>
-                        <!-- <section class="row" style="height: 500px;">
+                    <div class="form-group">
+                        <div class="col-12">
+                            <h2 for="pad">Artikel</h2>
+                            <!-- <section class="row" style="height: 500px;">
                     <textarea class="col-md-6 full-height" name="content" id="pad">Write your text here..</textarea>
                     <div class="col-md-6 full-height" name="content" id="markdown"></div>
                 </section>
                 <script src="https://cdn.rawgit.com/showdownjs/showdown/1.0.2/dist/showdown.min.js"></script>
                 <script src="javascripts/script.js"></script> -->
-                        <textarea id="MyID"></textarea>
+                            <textarea id="MyID" name="content"></textarea>
+                        </div>
+                        <script>var simplemde = new SimpleMDE({ element: document.getElementById("MyID"), spellChecker: false });</script>
                     </div>
-                    <script>var simplemde = new SimpleMDE({ element: document.getElementById("MyID"), spellChecker: false });</script>
-                </div>
-                <div class="col-12">
-                    <section class="row">
-                        <input type="submit" value="Submit" />
-                    </section>
-                </div>
-            </form>
-        </div>
+                    <div class="col-12">
+                        <section class="row">
+                            <input type="submit" value="Submit" />
+                        </section>
+                    </div>
+                </form>
+            </div>
 
 </body>
 

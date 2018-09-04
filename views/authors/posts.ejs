@@ -6,7 +6,6 @@
 <head>
     <title>Neuer Artikel</title>
     <% include ../partials/head %>
-  
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
         <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
         <link href="stylesheets/style.css" rel="stylesheet">
@@ -17,6 +16,7 @@
     <% include ../partials/authorsHeader %>
         <div class="container">
             <h1>Beiträge</h1>
+            <button type="button" class="btn btn-primary" onclick="location.href='/authors/edit'">Neu</button>
             <table class="table" id="articlesTable">
                 <thead>
                     <tr>
@@ -31,7 +31,8 @@
                     <% posts.forEach(function(post) { %>
                         <% var link = "/authors/edit/" + post._id; %>
                             <tr>
-                                <th><i class="material-icons md-18">delete_outline</i></th>
+                                <th><i class="material-icons md-18">delete
+                                </i></th>
                                 <th>
                                     <a href="<%= link %>">
                                         <%= post.title %>

@@ -33,7 +33,7 @@ router.post('/edit/', function (req, res) {
     if (err) throw err;
     console.log('Post saved successfully!' + post);
   });
-  res.redirect('authors/edit');
+  res.redirect('/edit');
 });
 
 module.exports = router;
