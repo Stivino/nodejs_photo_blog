@@ -14,6 +14,7 @@ var usersRouter = require('./routes/users');
 var authorsRouter = require('./routes/authors');
 var blogRouter = require('./routes/blogs');
 var photoRouter = require('./routes/photos');
+var apiRouter = require('./routes/api');
 var config = require('./config');
 
 // express
@@ -35,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // connecting the database
 const connectionString = `mongodb://${config.db.host}:${config.db.port}/${config.db.name}`
-mongoose.connect(connectionString);
+mongoose.connect(connectionString, { useNewUrlParser: true});
 
 // define routes
 app.use('/', indexRouter);
@@ -43,6 +44,7 @@ app.use('/users', usersRouter);
 app.use('/authors', authorsRouter);
 app.use('/blog', blogRouter);
 app.use('/photos', photoRouter);
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
